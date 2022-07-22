@@ -1,46 +1,48 @@
-# Getting Started with Create React App
+# React Dropdown
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Simple component that renders a dropdown.
+Do not use in PROD
 
-## Available Scripts
 
-In the project directory, you can run:
+## Building a dropdown component
 
-### `npm start`
+For this task we would like you to build a reusable dropdown component from the  UI. The dropdown is initiated by clicking on the button with the "more" icon, and should reveal some additional actions for the user to interact with.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Closed state:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/561506/134912453-ea7f0734-cbbd-4768-ba66-8e3aa78a357c.png">
 
-### `npm test`
+Open state:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<img width="401" alt="image" src="https://user-images.githubusercontent.com/561506/134908637-27ed1d8f-e041-45f3-b1d6-cac54b7ebfaf.png">
 
-### `npm run build`
+The "more" icon and some colour values are included in the gist, but don't worry too much about matching the design perfectly. These have been provided to save you time in choosing colors and iconography yourself. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Things to consider
+* Should we allow the menu to be left aligned as well as right?
+* The component should be reusable, so try to think about the API you would provide to other developers
+* Will it work for users who do not have a mouse?
+* What if the menu items needed to be a mixture of buttons and anchor tags? 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### A note about structure
+While it's entirely up to you how you approach structure we tend to prefer "composability" over "inheritance" ([source](https://reactjs.org/docs/composition-vs-inheritance.html)). You won't be marked down for choosing one over the other but we find composable components make for a great developer experience and reusability.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+// composable
+<Tile>
+  <TileHeader>Header</TileHeader>
+  <TileContent>My tile content...</TileContent>
+  <TileFooter>
+    <SecondaryButton onClick={...}>Cancel</SecondaryButton>
+    <PrimaryButton onClick={...}>Done</PrimaryButton>
+  </TileFooter>
+<Tile>
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+// inheritance
+<Tile
+  header="Header"
+  content="My tile content..."
+  onCancelClick={...}
+  onDoneClick={...}
+/>
+```
